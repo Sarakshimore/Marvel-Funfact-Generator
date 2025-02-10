@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Marvel Fun Fact Generator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+
+    #facts-container {
+      width: 80%;
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transform: translateY(-20px);
+      opacity: 0;
+      animation: slideIn 1s forwards;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1.1em;
+      background-color: #e62429;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #cc0000;
+    }
+
+    @keyframes slideIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Marvel Fun Fact Generator</h1> <button id="generate-btn">Generate Fact</button> 
+  <div id="facts-container">
+  </div>
+
+  <script>
+    document.getElementById('generate-btn').addEventListener('click', displayRandomFact);
+
+    function displayRandomFact() {
+      const factsContainer = document.getElementById("facts-container");
+      factsContainer.innerHTML = ''; // Clear previous facts
+
+      const marvelFacts = [
+        "Stan Lee's original name was Stanley Martin Lieber.",
+        "The first appearance of Spider-Man was in Amazing Fantasy #15 (1962).",
+        "Wolverine was originally supposed to be a mutated wolverine, not a human.",
+        "The Hulk's skin was originally gray, but was changed to green because of printing issues.",
+        "Black Widow's real name is Natasha Romanoff and she was trained as an assassin in the Red Room.",
+        "Thor's hammer, Mjolnir, is said to be forged from the heart of a dying star.",
+        "Captain America's shield is made of vibranium, a fictional metal found only in Wakanda.",
+        "The X-Men's arch-nemesis, Magneto, can control magnetism.",
+        "Deadpool is aware that he's a comic book character and often breaks the fourth wall.",
+        "The Infinity Stones represent different aspects of the universe: Space, Mind, Reality, Power, Time, and Soul."
+      ];
+
+      // Shuffle facts array (Fisher-Yates Shuffle Algorithm)
+      for (let i = marvelFacts.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [marvelFacts[i], marvelFacts[j]] = [marvelFacts[j], marvelFacts[i]];
+      }
+
+      // Display the first shuffled fact
+      const factElement = document.createElement("p");
+      factElement.textContent = marvelFacts[0]; // Get the first shuffled fact
+      factsContainer.appendChild(factElement);
+
+      // Restart animation
+      factsContainer.style.animation = 'none';
+      void factsContainer.offsetWidth; // Trigger reflow to restart animation
+      factsContainer.style.animation = 'slideIn 1s forwards'; 
+    }
+  </script>
+</body>
+</html>

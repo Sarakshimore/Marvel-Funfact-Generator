@@ -1,6 +1,6 @@
 # Marvel Fun Fact Generator
 
-This is a simple web application that generates random facts about the Marvel universe. Built with HTML, CSS, and JavaScript, it offers a fun way to explore trivia without any backend or external data sources.
+This is a simple web application that generates random facts about the Marvel universe. Built with HTML, CSS, and JavaScript, it offers a fun way to explore trivia without any backend or external data sources. Built this as a part of GenAI 101 with Pieces workshop.
 
 ## Features
 
